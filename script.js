@@ -1,6 +1,4 @@
-$(function () {
-  
-
+$(function() {
   $("#formSubmit").on("click", (e) => {
     // ii. Package the data
 
@@ -23,8 +21,8 @@ $(function () {
     );
   });
 
-  
-  $("#showPwdBtn").on("click", function () {
+
+  $("#showPwd").on("click", function() {
     let pwdInput = $("#pwd");
     let pwdFieldType = pwdInput.attr("type");
 
@@ -36,4 +34,27 @@ $(function () {
       $(this).text("Show Password");
     }
   });
-});
+
+  $("#loadProfile").on("click", function() {
+    console.log("button clicked: "); //TODO: find out who clicked me, w/this?
+
+    $.getJSON('data.json', (data) => {
+      $("#name").val(data.userName)
+       $("#optIn").prop("checked", data.optIn);
+      $("#phone").val(data.phone)
+      $("#credit-card").val(data.creditcard)
+      $("#ssn").val(data.ssn)
+      $("#email").val(data.email)
+    });
+  });
+    //TODO: can we grab data form anohter website.
+
+    $("#displayProfile").on("click", function() {
+      console.log("dipsplay button clicked: "); //TODO: find out who clicked me, w/
+
+      $("#dataContainer").append(
+        $("#name").val() + " put in ... data from my input boxes"
+      );
+    });
+  });
+
